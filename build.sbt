@@ -320,6 +320,16 @@ lazy val swaggerUiFinatra: Project = (project in file("docs/swagger-ui-finatra")
   )
   .settings(only2_12settings)
 
+lazy val swaggerUiPlay: Project = (project in file("docs/swagger-ui-play"))
+  .settings(commonSettings)
+  .settings(
+    name := "tapir-swagger-ui-play",
+    libraryDependencies ++= Seq(
+      "com.typesafe.play" %% "play" % Versions.playServer,
+      "org.webjars" % "swagger-ui" % Versions.swaggerUi
+    )
+  )
+
 // server
 
 lazy val serverTests: Project = (project in file("server/tests"))
