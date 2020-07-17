@@ -63,10 +63,19 @@ akka-http/http4s routes for exposing documentation using [Swagger UI](https://sw
 [Redoc](https://github.com/Redocly/redoc):
 
 ```scala
+// Akka HTTP
 "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-akka-http" % "0.16.5"
 "com.softwaremill.sttp.tapir" %% "tapir-redoc-akka-http" % "0.16.5"
+
+// Finatra
+"com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-finatra" % "0.16.5"
+
+// HTTP4S
 "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s" % "0.16.5"
 "com.softwaremill.sttp.tapir" %% "tapir-redoc-http4s" % "0.16.5"
+
+// Play
+"com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-play" % "0.16.5"
 ```
 
 Note: `tapir-swagger-ui-akka-http` transitively pulls some Akka modules in version 2.6. If you want to force
@@ -91,6 +100,8 @@ new SwaggerAkka(docsAsYaml).routes
 For redoc, use `RedocAkkaHttp`. 
 
 For http4s, use the `SwaggerHttp4s` or `RedocHttp4s` classes.
+
+For Play, use `SwaggerPlay`.
 
 ### Using with sbt-assembly
 
