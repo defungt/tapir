@@ -12,23 +12,22 @@ import play.api.routing.sird._
 import scala.concurrent.ExecutionContext
 
 /**
-  * Usage: add `new SwaggerAkka(yaml).routes` to your akka-http routes. Docs will be available using the `/docs` path.
+  * Usage: add `new SwaggerPlay(yaml).routes` to your Play routes. Docs will be available using the `/docs` path.
+  * To re-use the ActionBuilder from an existing PlayServerOptions instance, import `sttp.tapir.server.play._`
   *
-  * @param actionBuilder  The ActionBuilder instance to use. Depending on your implementation, this can come from:
-  *                       sttp.tapir.server.play.PlayServerOptions.defaultActionBuilder
-  *                       play.api.mvc.ControllerComponents.actionBuilder
-  *                       play.api.BuiltInComponents.defaultActionBuilder
   * @param yaml           The yaml with the OpenAPI documentation.
   * @param contextPath    The context in which the documentation will be served. Defaults to `docs`, so the address
   *                       of the docs will be `/docs`.
   * @param yamlName       The name of the file, through which the yaml documentation will be served. Defaults to `docs.yaml`.
 **/
 class SwaggerPlay(
-  actionBuilder: ActionBuilder[Request, AnyContent],
   yaml: String,
   contextPath: String = "docs",
   yamlName: String = "docs.yaml"
-)(implicit ec: ExecutionContext) {
+)(
+  implicit ec: ExecutionContext,
+  actionBuilder: ActionBuilder[Request, AnyContent]
+) {
   private implicit val swaggerUIFileMimeTypes: FileMimeTypes = new DefaultFileMimeTypes(FileMimeTypesConfiguration(Map(
     "html" -> MimeTypes.HTML,
     "css" -> MimeTypes.CSS,
